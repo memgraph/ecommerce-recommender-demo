@@ -1,0 +1,114 @@
+userId,userName,productId,productName,rating,timestamp
+0,Krystle Blas,6,Samsung Galaxy A21s,3,2020-12-17T09:18
+0,Krystle Blas,1,iPhone 12 mini,5,2020-03-13T11:44
+0,Krystle Blas,11,Redmi 8,3,2020-01-21T11:17
+0,Krystle Blas,4,Galaxy S20 Ultra,4,2020-04-19T10:16
+1,Jeri Tardy,10,Redmi 8A,2,2020-10-09T08:36
+1,Jeri Tardy,6,Samsung Galaxy A21s,2,2020-11-12T22:47
+2,Clarinda Sappington,2,Samsung Galaxy S20,3,2020-12-16T16:31
+2,Clarinda Sappington,1,iPhone 12 mini,4,2020-08-27T06:59
+2,Clarinda Sappington,8,Samsung Galaxy A11,5,2020-11-19T15:08
+3,Jonas Parkerson,3,Galaxy S20+,2,2020-06-16T01:50
+4,Florance Yaeger,13,Huawei P30,2,2020-08-11T14:14
+5,Carlton Casaus,6,Samsung Galaxy A21s,4,2020-03-22T08:08
+6,Nathanial Bridgers,3,Galaxy S20+,1,2020-12-23T15:23
+6,Nathanial Bridgers,5,Apple iPhone SE,5,2020-06-24T06:33
+6,Nathanial Bridgers,12,Oppo A5,5,2020-10-03T04:39
+6,Nathanial Bridgers,5,Apple iPhone SE,2,2020-03-29T21:10
+7,Ivana Stmartin,11,Redmi 8,5,2020-04-29T19:46
+8,Alethea Shedrick,13,Huawei P30,2,2020-08-30T10:20
+8,Alethea Shedrick,8,Samsung Galaxy A11,2,2020-09-03T01:58
+8,Alethea Shedrick,3,Galaxy S20+,1,2020-11-05T15:25
+8,Alethea Shedrick,0,Apple iPhone 12,3,2020-11-27T20:59
+9,Mirian Scarbrough,8,Samsung Galaxy A11,5,2020-02-25T05:03
+9,Mirian Scarbrough,10,Redmi 8A,3,2020-06-23T17:54
+9,Mirian Scarbrough,1,iPhone 12 mini,5,2020-06-13T20:57
+9,Mirian Scarbrough,8,Samsung Galaxy A11,1,2020-01-07T12:29
+10,Randal Blackshire,8,Samsung Galaxy A11,5,2020-07-18T20:43
+10,Randal Blackshire,1,iPhone 12 mini,4,2020-06-25T13:11
+11,Jean Mathena,11,Redmi 8,3,2020-09-26T01:43
+11,Jean Mathena,5,Apple iPhone SE,5,2020-08-13T09:52
+12,Wally Zamzow,13,Huawei P30,1,2020-02-28T18:57
+13,Vern Proto,12,Oppo A5,5,2020-07-23T15:30
+14,Rodney Yale,6,Samsung Galaxy A21s,1,2020-01-17T03:28
+14,Rodney Yale,13,Huawei P30,5,2020-09-04T18:29
+15,Shari Damelio,2,Samsung Galaxy S20,5,2020-10-15T20:13
+15,Shari Damelio,10,Redmi 8A,2,2020-12-15T17:52
+16,Davis Calbert,8,Samsung Galaxy A11,3,2020-08-27T18:05
+16,Davis Calbert,7,Apple iPhone 12 Pro Max,1,2020-02-28T03:30
+16,Davis Calbert,13,Huawei P30,5,2020-12-04T20:31
+16,Davis Calbert,6,Samsung Galaxy A21s,4,2020-05-06T04:48
+17,Ozie Rowan,8,Samsung Galaxy A11,2,2020-11-23T17:57
+17,Ozie Rowan,6,Samsung Galaxy A21s,4,2020-12-03T23:12
+18,Dot Brautigam,2,Samsung Galaxy S20,2,2020-07-27T04:15
+18,Dot Brautigam,9,Xiaomi Redmi Note 9 Pro,2,2020-03-13T21:37
+18,Dot Brautigam,10,Redmi 8A,5,2020-03-31T12:31
+19,Ileen Brungardt,7,Apple iPhone 12 Pro Max,4,2020-05-13T23:25
+19,Ileen Brungardt,9,Xiaomi Redmi Note 9 Pro,5,2020-04-19T07:04
+19,Ileen Brungardt,13,Huawei P30,3,2020-09-18T04:12
+20,Leslie Knope,5,Apple iPhone SE,1,2020-02-27T20:15
+20,Leslie Knope,13,Huawei P30,4,2020-12-12T16:44
+20,Leslie Knope,2,Samsung Galaxy S20,5,2020-11-26T03:13
+20,Leslie Knope,3,Galaxy S20+,4,2020-12-18T14:13
+21,Ann Perkins,4,Galaxy S20 Ultra,2,2020-09-25T04:28
+21,Ann Perkins,8,Samsung Galaxy A11,5,2020-07-18T13:56
+21,Ann Perkins,9,Xiaomi Redmi Note 9 Pro,4,2020-08-28T11:48
+22,Mark Brendanawicz,0,Apple iPhone 12,1,2020-02-05T19:36
+23,Tom Haverford,8,Samsung Galaxy A11,5,2020-02-15T20:00
+23,Tom Haverford,3,Galaxy S20+,2,2020-02-26T06:10
+23,Tom Haverford,7,Apple iPhone 12 Pro Max,2,2020-08-22T05:22
+24,Ron Swanson,8,Samsung Galaxy A11,2,2020-06-12T14:37
+25,April Ludgate,0,Apple iPhone 12,4,2020-02-04T23:03
+25,April Ludgate,10,Redmi 8A,4,2020-06-11T06:51
+26,Andy Dwyer,6,Samsung Galaxy A21s,5,2020-05-25T01:32
+27,Ben Wyatt,10,Redmi 8A,1,2020-03-13T13:16
+27,Ben Wyatt,6,Samsung Galaxy A21s,2,2020-02-13T07:29
+27,Ben Wyatt,12,Oppo A5,3,2020-05-08T09:11
+28,Chris Traeger,2,Samsung Galaxy S20,3,2020-04-19T19:55
+28,Chris Traeger,11,Redmi 8,5,2020-09-11T06:05
+28,Chris Traeger,11,Redmi 8,1,2020-10-27T02:09
+28,Chris Traeger,2,Samsung Galaxy S20,2,2020-04-07T04:11
+29,Jerry Gergich,7,Apple iPhone 12 Pro Max,1,2020-11-04T08:17
+30,Donna Meagle,2,Samsung Galaxy S20,2,2020-03-11T17:38
+30,Donna Meagle,12,Oppo A5,2,2020-04-02T20:46
+30,Donna Meagle,3,Galaxy S20+,3,2020-01-03T16:17
+31,Craig Middlebrooks,12,Oppo A5,3,2020-01-21T20:58
+31,Craig Middlebrooks,7,Apple iPhone 12 Pro Max,4,2020-09-30T23:45
+32,Marlene Griggs-Knope,8,Samsung Galaxy A11,4,2020-10-25T16:28
+32,Marlene Griggs-Knope,7,Apple iPhone 12 Pro Max,1,2020-03-22T08:23
+33,Jean-Ralphio Saperstein,8,Samsung Galaxy A11,5,2020-08-14T01:47
+33,Jean-Ralphio Saperstein,11,Redmi 8,2,2020-08-18T12:09
+33,Jean-Ralphio Saperstein,4,Galaxy S20 Ultra,2,2020-04-29T17:20
+34,Tammy Swanson,12,Oppo A5,2,2020-04-27T06:29
+34,Tammy Swanson,2,Samsung Galaxy S20,3,2020-06-10T16:34
+35,Philip J. Fry,8,Samsung Galaxy A11,1,2020-08-19T00:14
+36,Turanga Leela,0,Apple iPhone 12,5,2020-09-07T16:14
+37,Amy Wong,2,Samsung Galaxy S20,4,2020-11-23T16:25
+37,Amy Wong,9,Xiaomi Redmi Note 9 Pro,3,2020-02-10T10:30
+37,Amy Wong,7,Apple iPhone 12 Pro Max,4,2020-08-17T12:28
+37,Amy Wong,13,Huawei P30,1,2020-04-16T12:40
+38,Hermes Conrad,11,Redmi 8,3,2020-12-13T15:17
+38,Hermes Conrad,13,Huawei P30,1,2020-05-11T10:31
+38,Hermes Conrad,4,Galaxy S20 Ultra,2,2020-01-17T20:20
+38,Hermes Conrad,4,Galaxy S20 Ultra,5,2020-07-25T15:41
+39,Hubert J. Farnsworth,0,Apple iPhone 12,4,2020-01-30T01:58
+39,Hubert J. Farnsworth,9,Xiaomi Redmi Note 9 Pro,3,2020-07-22T20:19
+39,Hubert J. Farnsworth,2,Samsung Galaxy S20,4,2020-12-26T19:26
+40,John Zoidberg,10,Redmi 8A,4,2020-04-16T21:18
+40,John Zoidberg,13,Huawei P30,5,2020-04-19T07:00
+40,John Zoidberg,12,Oppo A5,3,2020-03-16T08:30
+41,Zapp Brannigan,1,iPhone 12 mini,5,2020-05-10T16:29
+41,Zapp Brannigan,11,Redmi 8,3,2020-09-16T12:15
+41,Zapp Brannigan,5,Apple iPhone SE,5,2020-04-20T16:37
+41,Zapp Brannigan,11,Redmi 8,4,2020-07-19T05:20
+42,Kif Kroker,9,Xiaomi Redmi Note 9 Pro,2,2020-05-01T15:57
+42,Kif Kroker,10,Redmi 8A,1,2020-09-16T22:01
+42,Kif Kroker,3,Galaxy S20+,2,2020-10-20T06:34
+43,Cubert Farnsworth,8,Samsung Galaxy A11,1,2020-03-22T12:25
+44,Linda van Schoonhoven,0,Apple iPhone 12,3,2020-11-23T20:58
+45,Morbo the Annihilator,4,Galaxy S20 Ultra,1,2020-12-01T00:36
+45,Morbo the Annihilator,10,Redmi 8A,5,2020-03-25T06:08
+45,Morbo the Annihilator,10,Redmi 8A,3,2020-10-16T18:05
+45,Morbo the Annihilator,5,Apple iPhone SE,3,2020-07-05T22:39
+46,Barbados Slim,3,Galaxy S20+,1,2020-10-20T11:50
+46,Barbados Slim,11,Redmi 8,2,2020-02-28T06:11

@@ -1,0 +1,74 @@
+version: "3"
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  memgraph-mage:
+    build: ./memgraph
+    ports:
+      - '7687:7687'
+    entrypoint: [
+      "/usr/lib/memgraph/memgraph",
+      "--telemetry-enabled=false",
+      "--kafka-bootstrap-servers=kafka:9092",
+      "--query-modules-directory=/transformations",
+      "--log-level=TRACE"]
+    networks:
+      - app-tier
+
+  redpanda:
+    command:
+      - redpanda
+      - start
+      - --smp
+      - "1"
+      - --reserve-memory
+      - 0M
+      - --overprovisioned
+      - --node-id
+      - "0"
+      - --kafka-addr
+      - PLAINTEXT://0.0.0.0:29092,OUTSIDE://0.0.0.0:9094
+      - --advertise-kafka-addr
+      - PLAINTEXT://redpanda:29092,OUTSIDE://localhost:9094
+    image: docker.vectorized.io/vectorized/redpanda:v21.9.5
+    ports:
+      - 9094:9094
+      - 29092:29092
+    networks:
+      - app-tier
+
+  pulsar:
+    image: apachepulsar/pulsar:2.6.0
+    ports:
+      - 8080:8080
+      - 6650:6650
+    environment:
+      PULSAR_MEM: " -Xms512m -Xmx512m -XX:MaxDirectMemorySize=1g"
+    command: bin/pulsar standalone
+    networks:
+      - app-tier
+
+  core:
+    image: tianon/true
+    restart: "no"
+    depends_on:
+      - redpanda
+      - pulsar
+
+  stream:
+    build:
+      context: ./
+      dockerfile: ./stream/Dockerfile
+    entrypoint: ["python3", "produce.py"]
+    environment:
+      REDPANDA_IP: redpanda
+      REDPANDA_PORT: 29092
+      REDPANDA_TOPIC: "ratings"
+      PULSAR_IP: pulsar
+      PULSAR_PORT: 6650
+      PULSAR_TOPIC: "views"
+    networks:
+      - app-tier

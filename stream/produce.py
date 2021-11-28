@@ -1,0 +1,105 @@
+from kafka import KafkaProducer
+from multiprocessing import Process
+from time import sleep
+import json
+import os
+import pulsar
+import csv
+import pulsar_consumer
+import redpanda_consumer
+
+REDPANDA_IP = os.getenv('REDPANDA_IP', 'localhost')
+REDPANDA_PORT = os.getenv('REDPANDA_PORT', '29092')
+REDPANDA_TOPIC = os.getenv('REDPANDA_TOPIC', 'ratings')
+PULSAR_IP = os.getenv('PULSAR_IP', 'localhost')
+PULSAR_PORT = os.getenv('PULSAR_PORT', '6650')
+PULSAR_TOPIC = os.getenv('PULSAR_TOPIC', 'views')
+
+RATINGS_DATA = "data/product_ratings.csv"
+VIEWS_DATA = "data/product_views.csv"
+
+'userId', 'userName', 'productId', 'productName', 'rating', 'timestamp'
+
+
+def generate_ratings():
+    while True:
+        with open(RATINGS_DATA) as file:
+            csvReader = csv.DictReader(file)
+            for rows in csvReader:
+                data = {
+                    'userId': rows['userId'],
+                    'userName': rows['userName'],
+                    'productId': rows['productId'],
+                    'productName': rows['productName'],
+                    'rating': rows['rating'],
+                    'timestamp': rows['timestamp']
+                }
+                yield data
+
+
+def generate_views():
+    while True:
+        with open(VIEWS_DATA) as file:
+            csvReader = csv.DictReader(file)
+            for rows in csvReader:
+                data = {
+                    'userId': rows['userId'],
+                    'userName': rows['userName'],
+                    'productId': rows['productId'],
+                    'productName': rows['productName'],
+                    'timestamp': rows['timestamp']
+                }
+                yield data
+
+
+def produce_redpanda(ip, port, topic, generate):
+    producer = KafkaProducer(bootstrap_servers=ip + ':' + port)
+    message = generate()
+    while True:
+        try:
+            producer.send(topic, json.dumps(next(message)).encode('utf8'))
+            producer.flush()
+            sleep(2)
+        except Exception as e:
+            print(f"Error: {e}")
+
+
+def produce_pulsar(ip, port, topic, generate):
+    client = pulsar.Client('pulsar://' + ip + ':' + port)
+    producer = client.create_producer(topic)
+    message = generate()
+    while True:
+        try:
+            producer.send(json.dumps(next(message)).encode('utf8'))
+            sleep(2)
+        except Exception as e:
+            print(f"Error: {e}")
+
+
+def main():
+    process_list = list()
+
+    p3 = Process(target=lambda: produce_redpanda(
+        REDPANDA_IP, REDPANDA_PORT, REDPANDA_TOPIC, generate_ratings))
+    p3.start()
+    process_list.append(p3)
+    p4 = Process(target=lambda: redpanda_consumer.run(
+        REDPANDA_IP, REDPANDA_PORT, REDPANDA_TOPIC, "Redpanda"))
+    p4.start()
+    process_list.append(p4)
+
+    p7 = Process(target=lambda: produce_pulsar(
+        PULSAR_IP, PULSAR_PORT, PULSAR_TOPIC, generate_views))
+    p7.start()
+    process_list.append(p7)
+    p8 = Process(target=lambda: pulsar_consumer.run(
+        PULSAR_IP, PULSAR_PORT, PULSAR_TOPIC, "Pulsar"))
+    p8.start()
+    process_list.append(p8)
+
+    for process in process_list:
+        process.join()
+
+
+if __name__ == "__main__":
+    main()
