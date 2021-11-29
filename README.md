@@ -30,7 +30,7 @@ simulated online store. Data is streamed via Redpanda and Pulsar.
     <img src="https://public-assets.memgraph.com/github/ecommerce-recommender-demo/ecommerce-model.png"
          alt="ecommerce-model"
          title="ecommerce-model"
-         style="width: 60%"/>
+         style="width: 75%"/>
   </a>
 </p>
 
