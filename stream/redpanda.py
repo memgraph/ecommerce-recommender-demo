@@ -1,9 +1,21 @@
-from kafka import KafkaConsumer
+from kafka import KafkaConsumer, KafkaProducer
 from time import sleep
 import json
 
 
-def run(ip, port, topic, platform):
+def producer(ip, port, topic, generate, stream_delay):
+    producer = KafkaProducer(bootstrap_servers=ip + ':' + port)
+    message = generate()
+    while True:
+        try:
+            producer.send(topic, json.dumps(next(message)).encode('utf8'))
+            producer.flush()
+            sleep(stream_delay)
+        except Exception as e:
+            print(f"Error: {e}")
+
+
+def consumer(ip, port, topic, platform):
     consumer = KafkaConsumer(topic,
                              bootstrap_servers=ip + ':' + port,
                              auto_offset_reset='earliest',

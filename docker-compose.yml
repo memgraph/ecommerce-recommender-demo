@@ -62,7 +62,7 @@ services:
     build:
       context: ./
       dockerfile: ./stream/Dockerfile
-    entrypoint: ["python3", "produce.py"]
+    entrypoint: ["python3", "produce.py", "--stream-delay", "2.0"]
     environment:
       REDPANDA_IP: redpanda
       REDPANDA_PORT: 29092

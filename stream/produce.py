@@ -1,12 +1,9 @@
-from kafka import KafkaProducer
 from multiprocessing import Process
-from time import sleep
-import json
-import os
-import pulsar
+import argparse
 import csv
-import pulsar_consumer
-import redpanda_consumer
+import os
+import apache_pulsar
+import redpanda
 
 REDPANDA_IP = os.getenv('REDPANDA_IP', 'localhost')
 REDPANDA_PORT = os.getenv('REDPANDA_PORT', '29092')
@@ -18,7 +15,23 @@ PULSAR_TOPIC = os.getenv('PULSAR_TOPIC', 'views')
 RATINGS_DATA = "data/product_ratings.csv"
 VIEWS_DATA = "data/product_views.csv"
 
-'userId', 'userName', 'productId', 'productName', 'rating', 'timestamp'
+
+def restricted_float(x):
+    try:
+        x = float(x)
+    except ValueError:
+        raise argparse.ArgumentTypeError("%r not a floating-point literal" % (x,))
+    if x < 0.0 or x > 3.0:
+        raise argparse.ArgumentTypeError("%r not in range [0.0, 3.0]" % (x,))
+    return x
+
+
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--stream-delay', type=restricted_float, default=2.0,
+                        help='Seconds to wait before producing a new message (MIN=0.0, MAX=3.0)')
+    value = parser.parse_args()
+    return value
 
 
 def generate_ratings():
@@ -52,47 +65,24 @@ def generate_views():
                 yield data
 
 
-def produce_redpanda(ip, port, topic, generate):
-    producer = KafkaProducer(bootstrap_servers=ip + ':' + port)
-    message = generate()
-    while True:
-        try:
-            producer.send(topic, json.dumps(next(message)).encode('utf8'))
-            producer.flush()
-            sleep(2)
-        except Exception as e:
-            print(f"Error: {e}")
-
-
-def produce_pulsar(ip, port, topic, generate):
-    client = pulsar.Client('pulsar://' + ip + ':' + port)
-    producer = client.create_producer(topic)
-    message = generate()
-    while True:
-        try:
-            producer.send(json.dumps(next(message)).encode('utf8'))
-            sleep(2)
-        except Exception as e:
-            print(f"Error: {e}")
-
-
 def main():
+    args = parse_arguments()
     process_list = list()
 
-    p3 = Process(target=lambda: produce_redpanda(
-        REDPANDA_IP, REDPANDA_PORT, REDPANDA_TOPIC, generate_ratings))
+    p3 = Process(target=lambda: redpanda.producer(
+        REDPANDA_IP, REDPANDA_PORT, REDPANDA_TOPIC, generate_ratings, args.stream_delay))
     p3.start()
     process_list.append(p3)
-    p4 = Process(target=lambda: redpanda_consumer.run(
+    p4 = Process(target=lambda: redpanda.consumer(
         REDPANDA_IP, REDPANDA_PORT, REDPANDA_TOPIC, "Redpanda"))
     p4.start()
     process_list.append(p4)
 
-    p7 = Process(target=lambda: produce_pulsar(
-        PULSAR_IP, PULSAR_PORT, PULSAR_TOPIC, generate_views))
+    p7 = Process(target=lambda: apache_pulsar.producer(
+        PULSAR_IP, PULSAR_PORT, PULSAR_TOPIC, generate_views, args.stream_delay))
     p7.start()
     process_list.append(p7)
-    p8 = Process(target=lambda: pulsar_consumer.run(
+    p8 = Process(target=lambda: apache_pulsar.consumer(
         PULSAR_IP, PULSAR_PORT, PULSAR_TOPIC, "Pulsar"))
     p8.start()
     process_list.append(p8)
