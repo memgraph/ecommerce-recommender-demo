@@ -3,8 +3,8 @@
 </h1>
 
 <p align="center">
-  <a href="https://github.com/g-despot/ecommerce-recommender-demo/LICENSE">
-    <img src="https://img.shields.io/github/license/memgraph/ecommerce-recommender-demo" alt="license" title="license"/>
+  <a href="https://github.com/g-despot/ecommerce-recommender-demo/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/g-despot/ecommerce-recommender-demo" alt="license" title="license"/>
   </a>
   <a href="https://github.com/g-despot/ecommerce-recommender-demo">
     <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="build" title="build"/>
