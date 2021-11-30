@@ -27,10 +27,10 @@ simulated online store. Data is streamed via Redpanda and Pulsar.
 
 <p align="left">
   <a href="https://github.com/g-despot/ecommerce-model">
-    <img src="https://public-assets.memgraph.com/github/ecommerce-recommender-demo/ecommerce-model.png"
+    <img src="https://public-assets.memgraph.com/github/ecommerce-recommender-demo/ecommerce-data-model.png"
          alt="ecommerce-model"
          title="ecommerce-model"
-         style="width: 75%"/>
+         style="width: 80%"/>
   </a>
 </p>
 
