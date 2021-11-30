@@ -107,6 +107,62 @@ START ALL STREAMS;
 SHOW STREAMS;
 ```
 
+### Basic queries
+
+* Return 10 users:
+
+```
+MATCH (u:User)
+RETURN u.name
+ORDER BY u.name
+LIMIT 10
+```
+
+* Return 10 products:
+
+```
+MATCH (p:Product)
+RETURN p.name
+ORDER BY p.name
+LIMIT 10
+```
+
+* Return all the phones that the user named _April Ludgate_ viewed:
+
+```
+MATCH (u:User)-[:VIEWED]-(p)
+WHERE u.name = "April Ludgate"
+RETURN p.name
+```
+
+* Return all the phones that the user named _Leslie Knope_ rated:
+
+```
+MATCH (u:User)-[:RATED]-(p)
+WHERE u.name = "Leslie Knope"
+RETURN p.name
+```
+
+* Get the average rating for each phone the user _Hubert J. Farnsworth_ viewed:
+
+```
+MATCH (u:User)-[:VIEWED]->(p)
+OPTIONAL MATCH (p)<-[r:RATED]-()
+WHERE u.name = "Hubert J. Farnsworth"
+RETURN p.name AS viewed, avg(r.rating) as rating
+ORDER BY rating ASC
+```
+
+* Only consider ratings that happened after June 2020 in the last query:
+
+```
+MATCH (u:User)-[:VIEWED]->(p)
+MATCH (p)<-[r:RATED]-()
+WHERE u.name = "Hubert J. Farnsworth" AND r.timestamp > LocalDateTime("2020-06-01T00:00")
+RETURN p.name AS viewed, avg(r.rating) as rating
+ORDER BY rating ASC
+```
+
 ### Generating recommendations
 
 You can generate a product recommendation by running:
