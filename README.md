@@ -77,7 +77,7 @@ docker-compose up memgraph-mage
 
 ### Creating the streams in Memgraph
 
-**1.** First, we will create a stram for consuming product views:
+**1.** First, we will create a stream for consuming product views:
 
 ```cypher
 CREATE PULSAR STREAM views
@@ -115,7 +115,7 @@ SHOW STREAMS;
 MATCH (u:User)
 RETURN u.name
 ORDER BY u.name
-LIMIT 10
+LIMIT 10;
 ```
 
 * Return 10 products:
@@ -124,7 +124,7 @@ LIMIT 10
 MATCH (p:Product)
 RETURN p.name
 ORDER BY p.name
-LIMIT 10
+LIMIT 10;
 ```
 
 * Return all the phones that the user named _April Ludgate_ viewed:
@@ -132,7 +132,7 @@ LIMIT 10
 ```
 MATCH (u:User)-[:VIEWED]-(p)
 WHERE u.name = "April Ludgate"
-RETURN p.name
+RETURN p.name;
 ```
 
 * Return all the phones that the user named _Leslie Knope_ rated:
@@ -140,7 +140,7 @@ RETURN p.name
 ```
 MATCH (u:User)-[:RATED]-(p)
 WHERE u.name = "Leslie Knope"
-RETURN p.name
+RETURN p.name;
 ```
 
 * Get the average rating for each phone the user _Hubert J. Farnsworth_ viewed:
@@ -150,7 +150,7 @@ MATCH (u:User)-[:VIEWED]->(p)
 OPTIONAL MATCH (p)<-[r:RATED]-()
 WHERE u.name = "Hubert J. Farnsworth"
 RETURN p.name AS viewed, avg(r.rating) as rating
-ORDER BY rating ASC
+ORDER BY rating ASC;
 ```
 
 * Only consider ratings that happened after June 2020 in the last query:
@@ -160,7 +160,7 @@ MATCH (u:User)-[:VIEWED]->(p)
 MATCH (p)<-[r:RATED]-()
 WHERE u.name = "Hubert J. Farnsworth" AND r.timestamp > LocalDateTime("2020-06-01T00:00")
 RETURN p.name AS viewed, avg(r.rating) as rating
-ORDER BY rating ASC
+ORDER BY rating ASC;
 ```
 
 ### Generating recommendations
